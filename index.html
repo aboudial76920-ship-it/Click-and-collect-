@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Casa Karima - Click & Collect</title>
+    <style>
+        :root {
+            --or: #d4af37;
+            --noir: #111111;
+            --gris-fonce: #1a1a1a;
+            --blanc: #f5f5f5;
+            --vert-wa: #25D366;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--noir);
+            color: var(--blanc);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            padding-bottom: 160px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* HEADER ET LOGO */
+        header img.logo {
+            width: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--or);
+            margin-top: -60px; /* Pour chevaucher la bannière */
+            position: relative;
+            background: #000;
+            z-index: 10;
+        }
+
+        /* NOUVELLE BANNIÈRE */
+        .banner-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            opacity: 0.8;
+            border-bottom: 2px solid var(--or);
+        }
+
+        h1 { color: var(--or); text-transform: uppercase; margin-bottom: 5px; font-size: 24px; margin-top: 10px; }
+        p { color: #ccc; font-size: 14px; }
+
+        /* PRODUITS AVEC IMAGES */
+        .product-card {
+            background: var(--gris-fonce);
+            border: 1px solid #333;
+            border-radius: 15px; /* Arrondi plus doux */
+            margin-bottom: 25px;
+            text-align: left;
+            overflow: hidden; /* Pour que l'image suive les bords */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .prod-img {
+            width: 100%;
+            height: 220px; /* Belle hauteur pour la photo */
+            object-fit: cover;
+            display: block;
+        }
+
+        .prod-content {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .prod-info { flex: 1; padding-right: 10px;}
+        .prod-title { font-weight: bold; color: var(--blanc); display: block; font-size: 18px; margin-bottom: 5px;}
+        .prod-desc { font-size: 13px; color: #aaa; display: block; line-height: 1.4; }
+        .prod-price { color: var(--or); font-weight: bold; font-size: 18px; margin-top: 8px; display: block;}
+
+        .prod-actions button {
+            background: var(--or);
+            border: none;
+            color: var(--noir);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .prod-qty { margin: 0 12px; font-weight: bold; font-size: 16px; }
+
+        /* PANIER FIXE EN BAS */
+        .bottom-cart {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #222;
+            border-top: 2px solid var(--or);
+            padding: 15px 0;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .total-display { font-size: 18px; font-weight: bold; margin-bottom: 10px; color: var(--blanc); }
+
+        .input-field {
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid var(--or);
+            background: #333;
+            color: white;
+            width: 80%;
+            max-width: 350px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--vert-wa);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 16px;
+            width: 80%;
+            max-width: 400px;
+            margin-bottom: 10px;
+        }
+
+        /* HORAIRES */
+        .horaires-list { list-style: none; padding: 0; text-align: left; background: #1a1a1a; padding: 20px; border-radius: 8px; margin-bottom: 60px;}
+        .horaires-list li { margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 5px; display: flex; justify-content: space-between; font-size: 14px;}
+        .jour { color: var(--or); font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+    <video controls autoplay muted loop width="100%">
+    <source src="6661.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la lecture de la vidéo.
+</video>
+
+
+    <div class="container">
+        <header>
+            <img src="logo casa karima plein.png" alt="Logo" class="logo">
+            <h1>La Casa Karima</h1>
+            <p>Traiteur Halal Premium & Charcuterie Fine</p>
+
+            <p style="font-size: 12px; color: var(--or); margin-top:10px;">👇 DÉCOUVREZ NOS COFFRETS GOURMANDS 👇</p>
+        </header>
+
+        <section id="shop" style="margin-top: 30px;">
+            
+            <div class="product-card">
+                <img src="6654.jpg" alt="Coffret Découverte" class="prod-img">
+                <div class="prod-content">
+                    <div class="prod-info">
+                        <span class="prod-title">Coffret Découverte</span>
+                        <span class="prod-desc">2 saucissons au choix (2x200g) + 1 bouteille Bulle de Ruche</span>
+                        <span class="prod-price">25€</span>
+                    </div>
+                    <div class="prod-actions">
+                        <button onclick="updateQty(0, -1)">-</button>
+                        <span id="qty-0" class="prod-qty">0</span>
+                        <button onclick="updateQty(0, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="6655.jpg" alt="Coffret Prestige" class="prod-img">
+                <div class="prod-content">
+                    <div class="prod-info">
+                        <span class="prod-title">Coffret Prestige</span>
+                        <span class="prod-desc">2 saucissons au choix + 1/2 French Bloom (Pétillant Sans Alcool)</span>
+                        <span class="prod-price">30€</span>
+                    </div>
+                    <div class="prod-actions">
+                        <button onclick="updateQty(1, -1)">-</button>
+                        <span id="qty-1" class="prod-qty">0</span>
+                        <button onclick="updateQty(1, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="6656.jpg" alt="Coffret Épicurien" class="prod-img">
+                <div class="prod-content">
+                    <div class="prod-info">
+                        <span class="prod-title">Coffret Épicurien</span>
+                        <span class="prod-desc">1 saucisson (350g Fumé/Nature) + 1/2 French Bloom</span>
+                        <span class="prod-price">35€</span>
+                    </div>
+                    <div class="prod-actions">
+                        <button onclick="updateQty(2, -1)">-</button>
+                        <span id="qty-2" class="prod-qty">0</span>
+                        <button onclick="updateQty(2, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 style="color: var(--or); border-bottom: 1px solid var(--or); display: inline-block; padding-bottom: 5px; margin-top: 30px;">Horaires de Retrait</h2>
+            <ul class="horaires-list">
+                <li><span class="jour">Lundi</span> <span>17h00 - 21h00</span></li>
+                <li><span class="jour">Mardi</span> <span>18h30 - 21h00</span></li>
+                <li><span class="jour">Mercredi</span> <span>18h30 - 20h00</span></li>
+                <li><span class="jour">Jeudi</span> <span>17h00 - 21h00</span></li>
+                <li><span class="jour">Vendredi</span> <span>13h30-16h & 17h-22h</span></li>
+                <li><span class="jour">Samedi</span> <span>15h00 - 20h00</span></li>
+            </ul>
+        </section>
+    </div>
+
+    <div class="bottom-cart" id="bottomCart" style="display:none;">
+        <div class="total-display">Total : <span id="totalPrice">0</span>€</div>
+        
+        <input type="text" id="clientName" class="input-field" placeholder="Votre Nom et Prénom">
+        <input type="email" id="clientEmail" class="input-field" placeholder="Votre Email (Pour la confirmation)">
+        
+        <button onclick="processOrder()" class="btn-whatsapp">
+            Valider & Choisir mon créneau 📅
+        </button>
+    </div>
+
+    <script>
+        const products = [
+            { name: "Coffret Découverte", price: 25 },
+            { name: "Coffret Prestige", price: 30 },
+            { name: "Coffret Épicurien", price: 35 }
+        ];
+
+        let cart = [0, 0, 0];
+        const baseCalendlyUrl = "https://calendly.com/aboudial76920/click-and-collect";
+
+        function updateQty(index, change) {
+            if (cart[index] + change >= 0) {
+                cart[index] += change;
+                document.getElementById(`qty-${index}`).innerText = cart[index];
+                calculateTotal();
+            }
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            let count = 0;
+            for (let i = 0; i < products.length; i++) {
+                total += cart[i] * products[i].price;
+                count += cart[i];
+            }
+            document.getElementById("totalPrice").innerText = total;
+            
+            const bottomBar = document.getElementById("bottomCart");
+            if (count > 0) {
+                bottomBar.style.display = "flex";
+            } else {
+                bottomBar.style.display = "none";
+            }
+        }
+
+        function processOrder() {
+            const nameField = document.getElementById("clientName");
+            const emailField = document.getElementById("clientEmail");
+            
+            const name = nameField.value.trim();
+            const email = emailField.value.trim();
+
+            if (name === "" || email === "") {
+                alert("Pour valider, merci d'indiquer votre Nom et Email !");
+                return;
+            }
+
+            let message = `Bonjour La Casa Karima, c'est ${name}.%0AJe souhaite commander :%0A`;
+            let total = 0;
+
+            for (let i = 0; i < products.length; i++) {
+                if (cart[i] > 0) {
+                    message += `- ${cart[i]}x ${products[i].name}%0A`;
+                    total += cart[i] * products[i].price;
+                }
+            }
+            message += `%0A*Total : ${total}€*`;
+            message += "%0A(Je reserve mon creneau de retrait a l'instant).";
+
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=33684952088&text=${message}`;
+            const finalCalendlyLink = `${baseCalendlyUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+
+            window.open(whatsappUrl, '_blank');
+
+            setTimeout(() => {
+                window.location.href = finalCalendlyLink;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
