@@ -3,235 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Casa Karima - Partenariat Boucherie Premium (B2B)</title>
+    <title>La Casa Karima | Espace Revendeurs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- CHARTE GRAPHIQUE PREMIUM --- */
         :root {
-            --or: #d4af37;
-            --or-hover: #b5952f;
-            --noir: #111111;
-            --gris-luxe: #1f1f1f;
-            --gris-border: #333333;
-            --blanc: #f5f5f5;
+            --gold: #D4AF37; /* L'Or de la Casa */
+            --black: #0a0a0a;
+            --dark-gray: #121212;
+            --text: #ffffff;
         }
 
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: var(--noir);
-            color: var(--blanc);
             margin: 0;
-            padding: 0;
-            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--black);
+            color: var(--text);
             line-height: 1.6;
-        }
-
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: left;
         }
 
         /* --- HEADER --- */
         header {
             text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 2px solid var(--or);
-            padding-bottom: 20px;
+            padding: 40px 20px;
+            background: linear-gradient(to bottom, #000, transparent);
+            border-bottom: 1px solid #333;
         }
 
-        header img.logo {
+        .logo {
             width: 120px;
             border-radius: 50%;
-            border: 3px solid var(--or);
-            padding: 2px;
-            background: #000;
+            border: 2px solid var(--gold);
+            margin-bottom: 20px;
         }
 
-        h1 { 
-            color: var(--or); 
-            text-transform: uppercase; 
-            font-size: 26px; 
-            margin-top: 20px; 
-            letter-spacing: 1px;
+        h1 {
+            color: var(--gold);
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 1.8rem;
+            margin: 0;
+            letter-spacing: 2px;
         }
-        
+
         .subtitle {
-            font-size: 16px;
-            color: #ccc;
             font-weight: 300;
+            font-size: 1rem;
+            color: #ccc;
+            margin-top: 10px;
         }
 
-        /* --- CARTES SERVICES (DESIGN PRO) --- */
-        .service-card {
-            background: var(--gris-luxe);
-            border: 1px solid var(--gris-border);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            transition: transform 0.2s ease;
+        /* --- CONTENU PRINCIPAL --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
         }
 
-        .service-card:hover {
-            border-color: var(--or);
-            transform: translateY(-2px);
+        .intro-text {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
         }
 
-        h2 { 
-            color: var(--or); 
-            font-size: 20px; 
-            border-bottom: 1px solid #444; 
-            padding-bottom: 10px; 
-            margin-top: 0;
+        /* --- ARGUMENTS (Cartes) --- */
+        .benefits-grid {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .benefit-card {
+            background: var(--dark-gray);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card-title {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
             text-transform: uppercase;
         }
 
-        p { color: #ddd; font-size: 14px; margin-bottom: 15px;}
-        strong { color: #fff; font-weight: 700; }
-
-        /* --- LISTES A PUCES DORÉES --- */
-        ul.premium-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 15px;
+        /* --- CTA BUTTON --- */
+        .cta-container {
+            margin-top: 50px;
+            padding: 40px;
+            background: linear-gradient(45deg, #111, #1a1a1a);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
         }
 
-        ul.premium-list li {
-            padding-left: 25px;
-            position: relative;
-            margin-bottom: 8px;
-            color: #eee;
-            font-size: 14px;
-        }
-
-        ul.premium-list li::before {
-            content: "✔";
-            color: var(--or);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        /* --- OFFRE SPÉCIALE --- */
-        .special-offer {
-            border: 1px dashed var(--or);
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--or);
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 13px;
-            margin-top: 20px;
-        }
-
-        /* --- CTA SECTION --- */
-        .cta-section {
-            background: linear-gradient(145deg, #222, #111);
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 40px;
-            text-align: center;
-            border: 1px solid var(--or);
-        }
-
-        .cta-section h3 { color: #fff; margin-top: 0; font-size: 22px;}
-        
-        .cta-button {
+        .btn-gold {
             display: inline-block;
-            background: var(--or);
-            color: var(--noir);
+            background-color: var(--gold);
+            color: var(--black);
             padding: 15px 35px;
             border-radius: 50px;
-            text-decoration: none;
             font-weight: 800;
-            font-size: 18px;
-            margin-top: 20px;
-            margin-bottom: 15px;
-            transition: background 0.3s;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-        }
-
-        .cta-button:hover {
-            background: var(--or-hover);
-        }
-
-        .email-link {
-            color: var(--or);
             text-decoration: none;
-            font-weight: bold;
-            border-bottom: 1px dotted var(--or);
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+            transition: transform 0.2s;
         }
 
-        footer {
+        .btn-gold:hover {
+            transform: scale(1.05);
+            background-color: #fff;
+        }
+
+        .footer {
             text-align: center;
-            margin-top: 50px;
+            padding: 40px 20px;
+            font-size: 0.8rem;
             color: #666;
-            font-size: 12px;
-            border-top: 1px solid #222;
-            padding-top: 20px;
+            border-top: 1px solid #333;
+            margin-top: 50px;
+        }
+
+        a.back-link {
+            color: #666;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
         }
     </style>
 </head>
 <body>
 
+    <header>
+        <img src="logo casa karima plein.png" alt="La Casa Karima Pro" class="logo">
+        <h1>Espace Revendeurs</h1>
+        <div class="subtitle">PARTENARIAT & EXCELLENCE HALAL</div>
+    </header>
+
     <div class="container">
-
-        <header>
-            <img src="logo casa karima plein.png" alt="Logo La Casa Karima" class="logo">
-            <h1>Partenariat La Casa Karima</h1>
-            <p class="subtitle">Devenez partenaire grossiste en Charcuterie Halal et Viande de race à Rouen et en Normandie.</p>
-        </header>
-
-        <div class="service-card">
-            <h2>🛡️ Notre Engagement : Qualité & Régularité</h2>
-            <p>En tant que grossiste spécialisé, <strong>La Casa Karima</strong> s'engage auprès des boucheries de Rouen et ses alentours à fournir uniquement des produits <strong>PREMIUM</strong>.</p>
-            <p>Notre objectif est simple : vous apporter des produits qui <strong>fidélisent votre clientèle</strong> gourmet et augmentent votre marge.</p>
-        </div>
-
-        <div class="service-card">
-            <h2>🥩 Viandes Halal d'Exception</h2>
-            <p>Nous sélectionnons des <strong>races à viande</strong> pour leur goût et leur texture. Nous garantissons une <strong>maturation</strong> et une <strong>qualité de découpe</strong> rigoureuses pour une présentation irréprochable dans votre vitrine.</p>
-            <ul class="premium-list">
-                <li>Viandes Halal Premium (Sélection de races)</li>
-                <li>Découpe professionnelle et régulière</li>
-                <li>Garantie de traçabilité et de certification Halal</li>
-            </ul>
-        </div>
         
-        <div class="service-card">
-            <h2>✨ Charcuterie Fine : Produits Différenciateurs</h2>
-            <p>Notre gamme de charcuterie fine Halal est conçue pour l'excellence et la découverte gustative. Démarquez-vous de la concurrence :</p>
-            <ul class="premium-list">
-                <li>Saucisson Nature & Fumé Halal de haute qualité</li>
-                <li>Soubressade Halal artisanale</li>
-                <li>Gigot d'agneau affiné</li>
-            </ul>
+        <p class="intro-text">
+            Boucheries, Épiceries Fines, Traiteurs :<br>
+            <strong>Devenez le point de référence de la charcuterie Halal Premium dans votre ville.</strong>
+        </p>
+
+        <div class="benefits-grid">
             
-            <div class="special-offer">
-                🎁 OFFRE NOUVEAU PARTENAIRE :<br>
-                Un Socle à Jambon OFFERT pour notre première collaboration !
+            <div class="benefit-card">
+                <span class="icon">📦</span>
+                <div class="card-title">Packs Attractifs & Sur-Mesure</div>
+                <p>Pas de stock inutile. Nous concevons des offres de lancement adaptées à la taille de votre établissement et à votre typologie de clientèle.</p>
             </div>
+
+            <div class="benefit-card">
+                <span class="icon">✨</span>
+                <div class="card-title">PLV & Marketing Offerts</div>
+                <p>Ne vendez pas seul. Bénéficiez de nos supports visuels (PLV) pour sublimer vos vitrines et déclencher l'achat coup de cœur.</p>
+            </div>
+
+            <div class="benefit-card">
+                <span class="icon">📈</span>
+                <div class="card-title">Accompagnement Croissance</div>
+                <p>Plus qu'un fournisseur, un partenaire. Nous vous conseillons pour optimiser votre surface de vente et augmenter votre chiffre d'affaires rayon.</p>
+            </div>
+
         </div>
 
-        <div class="cta-section">
-            <h3>🤝 Devenez Partenaire de Croissance</h3>
-            <p>Demandez nos tarifs professionnels et disponibilités.</p>
-            
-            <a href="tel:+33684952088" class="cta-button">📞 +33 6 84 95 20 88</a>
-            
-            <p style="margin-top: 15px; font-size: 14px; color: #aaa;">
-                Ou contactez-nous par email :<br>
-                <a href="mailto:lfernandez.lf@gmail.com" class="email-link">lfernandez.lf@gmail.com</a>
+        <div class="cta-container">
+            <h2 style="color:white; margin-top:0;">Prêt à collaborer ?</h2>
+            <p style="margin-bottom: 30px; color:#ddd;">
+                Demandez notre grille tarifaire "Revendeur" et découvrez nos produits exclusifs.
             </p>
+            <a href="https://wa.me/33684952088?text=Bonjour%20Karima,%20je%20suis%20un%20professionnel%20intéressé%20par%20votre%20gamme%20revendeur." class="btn-gold">
+                Obtenir les tarifs PRO ➡️
+            </a>
         </div>
+
+        <a href="index.html" class="back-link">← Retour au site Particuliers</a>
 
     </div>
 
-    <footer>
-        <p>La Casa Karima | 19b rue de franqueville 76240 Les Mesnil-Esnard, Normandie</p>
-    </footer>
+    <div class="footer">
+        La Casa Karima - Grossiste & Détaillant<br>
+        19b rue de Franqueville, 76240 Le Mesnil-Esnard<br>
+        Tel : 06 84 95 20 88
+    </div>
 
 </body>
 </html>

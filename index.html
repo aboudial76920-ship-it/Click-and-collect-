@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Casa Karima - Click & Collect Premium</title>
     <style>
-        /* --- 1. PALETTE DE COULEURS PREMIUM --- */
+        /* --- 1. DESIGN PREMIUM --- */
         :root {
             --or: #d4af37;
             --or-brillant: #f9d877;
@@ -22,7 +22,7 @@
             margin: 0;
             padding: 0;
             text-align: center;
-            padding-bottom: 180px; /* Espace pour le panier fixe */
+            padding-bottom: 180px;
         }
 
         .container {
@@ -31,7 +31,7 @@
             padding: 20px;
         }
 
-        /* --- 2. HEADER & LOGO --- */
+        /* --- HEADER --- */
         header {
             background: linear-gradient(to bottom, #000000, #1a1a1a);
             padding-bottom: 20px;
@@ -56,136 +56,95 @@
             margin-bottom: 10px; 
             font-size: 26px; 
             margin-top: 15px; 
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        .slogan-text { 
-            font-size: 16px; 
-            color: #fff; 
-            font-weight: bold; 
-            margin-bottom: 20px; 
-            line-height: 1.4;
-        }
-
-        /* --- 3. BOUTON B2B (PROFESSIONNELS) --- */
-        .btn-pro {
-            display: inline-block;
-            background: transparent;
-            border: 1px solid #444;
-            color: #aaa;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: normal;
-            text-transform: uppercase;
-            font-size: 11px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-        .btn-pro:hover {
-            border-color: var(--or);
+        .category-title {
             color: var(--or);
-            background: rgba(212, 175, 55, 0.1);
+            font-size: 22px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
         }
 
-        /* --- 4. CARTES PRODUITS (DESIGN & TEXTE) --- */
+        /* --- CARTES PRODUITS --- */
         .product-card {
             background: var(--gris-luxe);
             border: 1px solid #333;
-            border-radius: 20px;
-            margin-bottom: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
             text-align: left;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
-        .product-card::before {
-            content: "PREMIUM";
-            position: absolute;
-            top: 15px; right: 15px;
-            background: var(--or);
-            color: #000;
-            font-size: 10px; font-weight: bold;
-            padding: 5px 10px; border-radius: 4px;
-            z-index: 10;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-        }
-
-        .prod-img {
+        .product-img {
             width: 100%;
-            height: 220px;
+            height: 180px;
             object-fit: cover;
-            display: block;
-            filter: brightness(0.95);
+            border-bottom: 1px solid var(--or);
+            background-color: #333;
         }
 
-        .prod-content {
-            padding: 20px;
+        .prod-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 15px 5px 15px;
         }
 
-        .prod-info { flex: 1; padding-right: 15px;}
-        
         .prod-title { 
-            font-weight: 800; 
-            color: var(--or-brillant); 
-            display: block; 
-            font-size: 19px; 
-            margin-bottom: 8px;
+            font-weight: bold; 
+            color: #fff; 
+            font-size: 18px; 
             text-transform: uppercase;
         }
-        
-        .prod-desc { 
-            font-size: 13px; 
-            color: #ccc; 
-            display: block; 
-            line-height: 1.5; /* Meilleure lisibilité */
+
+        .prod-price { 
+            color: var(--or-brillant); 
+            font-weight: bold; 
+            font-size: 18px; 
         }
-        
-        .prod-desc strong { color: #fff; } /* Mettre en valeur les mots clés */
 
-        .prod-price { color: #fff; font-weight: bold; font-size: 22px; margin-top: 10px; display: block;}
+        .prod-desc { 
+            padding: 0 15px 15px 15px;
+            font-size: 13px; 
+            color: #aaa; 
+            line-height: 1.4;
+        }
 
-        /* --- 5. BOUTONS +/- --- */
         .prod-actions {
+            background: #111;
+            padding: 10px;
             display: flex;
+            justify-content: flex-end;
             align-items: center;
-            background: #000;
-            padding: 5px;
-            border-radius: 30px;
-            border: 1px solid #444;
+            border-top: 1px solid #333;
         }
 
         .prod-actions button {
-            width: 40px; height: 40px;
+            width: 35px; height: 35px;
             border-radius: 50%;
             border: none;
-            font-size: 22px;
+            font-size: 20px;
             cursor: pointer;
-            transition: transform 0.1s;
         }
         .btn-minus { background: #333; color: #fff; }
-        .btn-plus { 
-            background: var(--or); 
-            color: var(--noir); 
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-        .btn-plus:active { transform: scale(0.9); }
+        .btn-plus { background: var(--or); color: #000; font-weight: bold; }
         
-        .prod-qty { margin: 0 15px; font-weight: bold; font-size: 18px; color: #fff;}
+        .prod-qty { margin: 0 15px; font-weight: bold; font-size: 16px; color: #fff; min-width: 20px; text-align: center;}
 
-        /* --- 6. PANIER FIXE & ANIMATION --- */
+        /* --- PANIER --- */
         .bottom-cart {
             position: fixed;
             bottom: 0; left: 0; width: 100%;
-            background: rgba(17, 17, 17, 0.95);
-            backdrop-filter: blur(8px);
+            background: rgba(17, 17, 17, 0.98);
             border-top: 2px solid var(--or);
             padding: 20px 0;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.8);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -193,183 +152,217 @@
         }
 
         .total-display { font-size: 20px; font-weight: bold; margin-bottom: 15px; color: var(--or-brillant); }
+        .input-field { padding: 12px; border-radius: 5px; border: 1px solid #444; background: #222; color: white; width: 85%; max-width: 350px; margin-bottom: 10px; text-align: center; }
+        .btn-whatsapp { background: #25D366; color: white; border: none; padding: 15px 30px; border-radius: 50px; font-weight: bold; font-size: 16px; width: 90%; max-width: 400px; cursor: pointer; }
 
-        .input-field {
-            padding: 12px;
-            border-radius: 5px;
-            border: 1px solid #444;
-            background: #222;
-            color: white;
-            width: 85%;
-            max-width: 350px;
-            margin-bottom: 10px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        @keyframes pulse-green {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        .btn-whatsapp {
-            background: linear-gradient(45deg, #25D366, #128C7E);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 18px;
-            width: 90%;
-            max-width: 400px;
-            margin-bottom: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            animation: pulse-green 2s infinite;
-            cursor: pointer;
-        }
-
-        .horaires-list { list-style: none; padding: 20px; text-align: left; background: #1a1a1a; border-radius: 10px; margin-bottom: 40px;}
-        .horaires-list li { margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; display: flex; justify-content: space-between; font-size: 14px;}
-        .jour { color: var(--or); font-weight: bold; }
-
+        .btn-pro { display: inline-block; border: 1px solid #444; color: #aaa; padding: 10px 20px; border-radius: 50px; font-size: 11px; text-decoration: none; margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <video controls autoplay muted loop width="100%" style="border-bottom: 2px solid var(--or);">
         <source src="6661.mp4" type="video/mp4">
-        Votre navigateur ne supporte pas la lecture de la vidéo.
     </video>
 
     <div class="container">
         <header>
-            <img src="logo casa karima plein.png" alt="Logo La Casa Karima" class="logo">
-            <h1 class="main-title">LA CASA KARIMA :<br>LE GOÛT DE L'EXCELLENCE.</h1>
-            
-            <p class="slogan-text">
-                Le goût de l'excellence chez vous !<br>
-                Commandez votre <strong>Coffret Apéro</strong> Halal Premium en 3 clics.
-            </p>
-
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-top: 15px; text-align: justify; font-size: 14px; border-left: 3px solid var(--or);">
-                <p style="margin: 0; color: #ddd;">
-                    Bienvenue à **La Casa Karima**, le spécialiste normand des produits gourmets **Halal Premium**. Ici, le **GOÛT** est roi.
-                </p>
-            </div>
+            <img src="logo casa karima plein.png" alt="Logo" class="logo">
+            <h1 class="main-title">La Casa Karima</h1>
+            <p style="color:#ccc; font-size:14px;">Charcuterie Fine & Viandes d'Exception<br>100% Halal Premium</p>
         </header>
 
-        <section id="shop">
-            
-            <div style="margin-bottom: 25px;">
-                <h2 style="color: var(--or); font-size: 22px; margin-bottom: 5px;">🤩 Prêt(e) à craquer ?</h2>
-                <p style="font-size: 14px; color: #aaa;">Choisissez votre coffret gourmand ci-dessous 👇</p>
-            </div>
-  
-            <div class="product-card">
-                <img src="6654.jpg" alt="Coffret Découverte" class="prod-img">
-                <div class="prod-content">
-                    <div class="prod-info">
-                        <span class="prod-title">Coffret Découverte</span>
-                        <span class="prod-desc">
-                            <strong>Duo de Saucissons Halal Premium</strong> (2x200g, Nature/Fumé/Soubressade) + 1 bouteille de <strong>Bulle de Ruche</strong> (Pétillant de miel 0% alcool, une alternative légère et gastronomique).
-                        </span>
-                        <span class="prod-price">25€</span>
-                    </div>
-                    <div class="prod-actions">
-                        <button class="btn-minus" onclick="updateQty(0, -1)">-</button>
-                        <span id="qty-0" class="prod-qty">0</span>
-                        <button class="btn-plus" onclick="updateQty(0, 1)">+</button>
-                    </div>
-                </div>
-            </div>
+        <h2 class="category-title">🥩 Les Incontournables (200g)</h2>
 
-            <div class="product-card">
-                <img src="6655.jpg" alt="Coffret Prestige" class="prod-img">
-                <div class="prod-content">
-                    <div class="prod-info">
-                        <span class="prod-title">Coffret Prestige</span>
-                        <span class="prod-desc">
-                            <strong>2 Saucissons d'Exception</strong> (2x200g) + 1/2 bouteille de <strong>French Bloom</strong> (Le raffinement ultime sans alcool, aux notes fraîches et élégantes).
-                        </span>
-                        <span class="prod-price">30€</span>
-                    </div>
-                    <div class="prod-actions">
-                        <button class="btn-minus" onclick="updateQty(1, -1)">-</button>
-                        <span id="qty-1" class="prod-qty">0</span>
-                        <button class="btn-plus" onclick="updateQty(1, 1)">+</button>
-                    </div>
-                </div>
+        <div class="product-card">
+            <img src="saucisson-nature.jpg" alt="Saucisson Nature" class="product-img" onerror="this.style.display='none'">
+            <div class="prod-header">
+                <span class="prod-title">Saucisson Nature</span>
+                <span class="prod-price">6,00 €</span>
             </div>
-
-            <div class="product-card">
-                <img src="6656.jpg" alt="Coffret Épicurien" class="prod-img">
-                <div class="prod-content">
-                    <div class="prod-info">
-                        <span class="prod-title">Coffret Épicurien</span>
-                        <span class="prod-desc">
-                            <strong>1 Saucisson Artisanal Format Généreux</strong> (350g, Fumé au bois de hêtre ou Nature) + 1/2 bouteille de <strong>French Bloom</strong>. L'accord parfait.
-                        </span>
-                        <span class="prod-price">35€</span>
-                    </div>
-                    <div class="prod-actions">
-                        <button class="btn-minus" onclick="updateQty(2, -1)">-</button>
-                        <span id="qty-2" class="prod-qty">0</span>
-                        <button class="btn-plus" onclick="updateQty(2, 1)">+</button>
-                    </div>
-                </div>
+            <div class="prod-desc">Le classique indétrônable. Goût authentique, séchage maîtrisé.</div>
+            <div class="prod-actions">
+                <button class="btn-minus" onclick="updateQty(0, -1)">-</button>
+                <span id="qty-0" class="prod-qty">0</span>
+                <button class="btn-plus" onclick="updateQty(0, 1)">+</button>
             </div>
-        </section>
+        </div>
 
-        <section>
-            <h2 style="color: var(--or); border-bottom: 2px solid var(--or); display: inline-block; padding-bottom: 5px; margin-top: 30px;">⏱️ Horaires de Retrait</h2>
-            <ul class="horaires-list">
-                <li><span class="jour">Lundi</span> <span>17h00 - 21h00</span></li>
-                <li><span class="jour">Mardi</span> <span>18h30 - 21h00</span></li>
-                <li><span class="jour">Mercredi</span> <span>18h30 - 20h00</span></li>
-                <li><span class="jour">Jeudi</span> <span>17h00 - 21h00</span></li>
-                <li><span class="jour">Vendredi</span> <span>13h30-16h & 17h-22h</span></li>
-                <li><span class="jour">Samedi</span> <span>15h00 - 20h00</span></li>
+        <div class="product-card">
+            <img src="saucisson-poivre.jpg" alt="Saucisson Poivre" class="product-img" onerror="this.style.display='none'">
+            <div class="prod-header">
+                <span class="prod-title">Saucisson Poivre</span>
+                <span class="prod-price">6,50 €</span>
+            </div>
+            <div class="prod-desc">Enrobé de poivre concassé pour une note relevée et parfumée.</div>
+            <div class="prod-actions">
+                <button class="btn-minus" onclick="updateQty(1, -1)">-</button>
+                <span id="qty-1" class="prod-qty">0</span>
+                <button class="btn-plus" onclick="updateQty(1, 1)">+</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="saucisson-hdp.jpg" alt="Saucisson Herbes" class="product-img" onerror="this.style.display='none'">
+            <div class="prod-header">
+                <span class="prod-title">Saucisson Herbes</span>
+                <span class="prod-price">6,50 €</span>
+            </div>
+            <div class="prod-desc">Aux senteurs du sud (Herbes de Provence). Idéal pour l'apéritif.</div>
+            <div class="prod-actions">
+                <button class="btn-minus" onclick="updateQty(2, -1)">-</button>
+                <span id="qty-2" class="prod-qty">0</span>
+                <button class="btn-plus" onclick="updateQty(2, 1)">+</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="chorizo.jpg" alt="Chorizo" class="product-img" onerror="this.style.display='none'">
+            <div class="prod-header">
+                <span class="prod-title">Chorizo (Saucisson)</span>
+                <span class="prod-price">6,50 €</span>
+            </div>
+            <div class="prod-desc">Caractère et épices douces. Une touche de chaleur.</div>
+            <div class="prod-actions">
+                <button class="btn-minus" onclick="updateQty(3, -1)">-</button>
+                <span id="qty-3" class="prod-qty">0</span>
+                <button class="btn-plus" onclick="updateQty(3, 1)">+</button>
+            </div>
+        </div>
+
+        <h2 class="category-title">🔥 Les Pièces de Maître (350g)</h2>
+
+        <div class="product-card">
+            <img src="saucisson-fume.jpg" alt="Saucisson Fumé" class="product-img" onerror="this.style.display='none'">
+            <div class="prod-header">
+                <span class="prod-title">Saucisson Fumé</span>
+                <span class="prod-price">15,00 €</span>
+            </div>
+            <div class="prod-desc">Fumé délicatement au bois de hêtre. Une saveur profonde et boisée.</div>
+            <div class="prod-actions">
+                <button class="btn-minus" onclick="updateQty(4, -1)">-</button>
+                <span id="qty-4" class="prod-qty">0</span>
+                <button class="btn-plus" onclick="updateQty(4, 1)">+</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="nature-espagnol.jpg" alt="Espagnol" class="product-img" onerror="this.style.display='none'">
+            <div class="prod-header">
+                <span class="prod-title">Nature "Espagnol"</span>
+                <span class="prod-price">15,00 €</span>
+            </div>
+            <div class="prod-desc">Format généreux façon espagnole. Chair tendre et goût subtil.</div>
+            <div class="prod-actions">
+                <button class="btn-minus" onclick="updateQty(5, -1)">-</button>
+                <span id="qty-5" class="prod-qty">0</span>
+                <button class="btn-plus" onclick="updateQty(5, 1)">+</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="soubressade.jpg" alt="Soubressade" class="product-img" onerror="this.style.display='none'">
+            <div class="prod-header">
+                <span class="prod-title">Soubressade</span>
+                <span class="prod-price">18,00 €</span>
+            </div>
+            <div class="prod-desc">Le "Saucisson à tartiner" de caractère. Chair onctueuse et puissante. Une pièce généreuse à déguster sur toast chaud.</div>
+            <div class="prod-actions">
+                <button class="btn-minus" onclick="updateQty(6, -1)">-</button>
+                <span id="qty-6" class="prod-qty">0</span>
+                <button class="btn-plus" onclick="updateQty(6, 1)">+</button>
+            </div>
+        </div>
+
+        <h2 class="category-title">🎁 Les Coffrets Cadeaux</h2>
+        <p style="font-size:12px; color:#aaa; margin-bottom:15px; text-align:left;">
+            <em>*Pour les coffrets, vous préciserez vos choix de saucissons (Nature, Poivre...) lors de la validation WhatsApp.</em>
+        </p>
+
+        <div class="product-card" style="border: 1px dashed var(--or);">
+            <img src="coffret-bulle.jpg" alt="Coffret Bulle" class="product-img" onerror="this.style.display='none'">
+            <div class="prod-header">
+                <span class="prod-title">Coffret "Bulle de Ruche"</span>
+                <span class="prod-price">25,00 €</span>
+            </div>
+            <div class="prod-desc">
+                <strong>2 Saucissons (200g) au choix</strong> + 1 bouteille de Bulle de Ruche (Pétillant de miel 0% alcool).
+            </div>
+            <div class="prod-actions">
+                <button class="btn-minus" onclick="updateQty(7, -1)">-</button>
+                <span id="qty-7" class="prod-qty">0</span>
+                <button class="btn-plus" onclick="updateQty(7, 1)">+</button>
+            </div>
+        </div>
+
+        <div class="product-card" style="border: 1px dashed var(--or);">
+            <img src="coffret-bloom.jpg" alt="Coffret French Bloom" class="product-img" onerror="this.style.display='none'">
+            <div class="prod-header">
+                <span class="prod-title">Coffret "French Bloom"</span>
+                <span class="prod-price">30,00 €</span>
+            </div>
+            <div class="prod-desc">
+                <strong>2 Saucissons (200g) au choix</strong> + 1/2 bouteille French Bloom (Le luxe sans alcool).
+            </div>
+            <div class="prod-actions">
+                <button class="btn-minus" onclick="updateQty(8, -1)">-</button>
+                <span id="qty-8" class="prod-qty">0</span>
+                <button class="btn-plus" onclick="updateQty(8, 1)">+</button>
+            </div>
+        </div>
+
+        <div class="product-card" style="border: 1px dashed var(--or);">
+            <img src="coffret-prestige.jpg" alt="Coffret Prestige" class="product-img" onerror="this.style.display='none'">
+            <div class="prod-header">
+                <span class="prod-title">Coffret "Prestige 350"</span>
+                <span class="prod-price">35,00 €</span>
+            </div>
+            <div class="prod-desc">
+                <strong>1 Saucisson (350g) au choix</strong> (Fumé ou Nature) + 1/2 bouteille French Bloom.
+            </div>
+            <div class="prod-actions">
+                <button class="btn-minus" onclick="updateQty(9, -1)">-</button>
+                <span id="qty-9" class="prod-qty">0</span>
+                <button class="btn-plus" onclick="updateQty(9, 1)">+</button>
+            </div>
+        </div>
+
+        <div style="margin-top:40px; text-align:left; border-top:1px solid #333; padding-top:20px;">
+            <h3 style="color:var(--or);">⏱️ Horaires de Retrait</h3>
+            <ul style="color:#ccc; font-size:14px; line-height:1.6; padding-left:20px;">
+                <li>Lundi & Jeudi : 17h-21h</li>
+                <li>Mardi : 18h30-21h | Mercredi : 18h30-20h</li>
+                <li>Vendredi : 13h30-16h & 17h-22h</li>
+                <li>Samedi : 15h-20h</li>
             </ul>
-            
-            <p style="margin-top: 15px; font-size: 14px;">
-                Adresse de Retrait :<br>
-                <strong style="font-size: 16px; color: #fff;">📍 19b rue de Franqueville, 76240 Mesnil-Esnard</strong>
-            </p>
-            <p style="font-weight: bold; color: var(--or); margin-top: 10px;">
-                Une question ? <a href="tel:+33684952088" style="color: var(--or); text-decoration: none;">+33 6 84 95 20 88</a>
-            </p>
+            <p style="color:#fff; margin-top:10px;">📍 <strong>19b rue de Franqueville, 76240 Mesnil-Esnard</strong></p>
+        </div>
 
-            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #333;">
-                <p style="font-size: 12px; color: #666; margin-bottom: 5px;">ACCÈS PROFESSIONNELS</p>
-                <a href="partenariat-boucherie.html" class="btn-pro">
-                    🥩 Espace Bouchers / Grossiste ➡️
-                </a>
-            </div>
-
-        </section>
+        <div style="margin-top: 40px; margin-bottom:20px;">
+            <a href="partenariat-boucherie.html" class="btn-pro">Accès Bouchers / Pro ➡️</a>
+        </div>
     </div>
 
     <div class="bottom-cart" id="bottomCart" style="display:none;">
         <div class="total-display">Total : <span id="totalPrice">0</span>€</div>
-        
-        <input type="text" id="clientName" class="input-field" placeholder="Votre Nom et Prénom">
-        <input type="email" id="clientEmail" class="input-field" placeholder="Votre Email (Pour la confirmation)">
-        
-        <button onclick="processOrder()" class="btn-whatsapp">
-            J'achète et je réserve mon créneau ! 🚀
-        </button>
+        <input type="text" id="clientName" class="input-field" placeholder="Votre Nom">
+        <button onclick="processOrder()" class="btn-whatsapp">Commander via WhatsApp 🚀</button>
     </div>
 
     <script>
         const products = [
-            { name: "Coffret Découverte", price: 25 },
-            { name: "Coffret Prestige", price: 30 },
-            { name: "Coffret Épicurien", price: 35 }
+            { name: "Saucisson Nature (200g)", price: 6.00 },     // 0
+            { name: "Saucisson Poivre (200g)", price: 6.50 },     // 1
+            { name: "Saucisson HDP (200g)", price: 6.50 },        // 2
+            { name: "Saucisson Chorizo (200g)", price: 6.50 },    // 3
+            { name: "Saucisson Fumé (350g)", price: 15.00 },      // 4
+            { name: "Saucisson Espagnol (350g)", price: 15.00 },  // 5
+            { name: "Soubressade (350g)", price: 18.00 },         // 6
+            { name: "Coffret Bulle de Ruche", price: 25.00 },     // 7
+            { name: "Coffret French Bloom", price: 30.00 },       // 8
+            { name: "Coffret Prestige 350", price: 35.00 }        // 9
         ];
 
-        let cart = [0, 0, 0];
-        const baseCalendlyUrl = "https://calendly.com/aboudial76920/click-and-collect";
+        let cart = new Array(products.length).fill(0);
 
         function updateQty(index, change) {
             if (cart[index] + change >= 0) {
@@ -386,48 +379,33 @@
                 total += cart[i] * products[i].price;
                 count += cart[i];
             }
-            document.getElementById("totalPrice").innerText = total;
-            
-            const bottomBar = document.getElementById("bottomCart");
-            if (count > 0) {
-                bottomBar.style.display = "flex";
-            } else {
-                bottomBar.style.display = "none";
-            }
+            document.getElementById("totalPrice").innerText = total.toFixed(2);
+            document.getElementById("bottomCart").style.display = count > 0 ? "flex" : "none";
         }
 
         function processOrder() {
-            const nameField = document.getElementById("clientName");
-            const emailField = document.getElementById("clientEmail");
-            
-            const name = nameField.value.trim();
-            const email = emailField.value.trim();
+            const name = document.getElementById("clientName").value.trim();
+            if (name === "") { alert("Merci d'indiquer votre nom !"); return; }
 
-            if (name === "" || email === "") {
-                alert("Pour valider, merci d'indiquer votre Nom et Email !");
-                return;
-            }
-
-            let message = `Bonjour La Casa Karima, c'est ${name}.%0AJe souhaite commander :%0A`;
+            let msg = `Bonjour La Casa Karima, c'est ${name}.%0AJe souhaite commander :%0A`;
             let total = 0;
+            let hasCoffret = false;
 
             for (let i = 0; i < products.length; i++) {
                 if (cart[i] > 0) {
-                    message += `- ${cart[i]}x ${products[i].name}%0A`;
+                    msg += `- ${cart[i]}x ${products[i].name}%0A`;
                     total += cart[i] * products[i].price;
+                    if (i >= 7) hasCoffret = true; // Si c'est un coffret
                 }
             }
-            message += `%0A*Total : ${total}€*`;
-            message += "%0A(Je reserve mon creneau de retrait a l'instant).";
 
-            const whatsappUrl = `https://api.whatsapp.com/send?phone=33684952088&text=${message}`;
-            const finalCalendlyLink = `${baseCalendlyUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+            msg += `%0A*Total : ${total.toFixed(2)}€*`;
+            
+            if (hasCoffret) {
+                msg += `%0A%0A(Je vous préciserai mes choix de saveurs pour les coffrets dans le message suivant)`;
+            }
 
-            window.open(whatsappUrl, '_blank');
-
-            setTimeout(() => {
-                window.location.href = finalCalendlyLink;
-            }, 1000);
+            window.open(`https://api.whatsapp.com/send?phone=33684952088&text=${msg}`, '_blank');
         }
     </script>
 </body>
