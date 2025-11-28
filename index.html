@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Casa Karima - Click & Collect Premium</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d4af37">
+    <link rel="apple-touch-icon" href="logo casa karima plein.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <style>
         /* --- 1. DESIGN PREMIUM --- */
         :root {
@@ -439,6 +445,17 @@
             }
 
             window.open(`https://api.whatsapp.com/send?phone=33684952088&text=${msg}`, '_blank');
+        }
+
+        // --- SCRIPT D'INSTALLATION PWA ---
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+              navigator.serviceWorker.register('sw.js').then(function(registration) {
+                console.log('Appli Casa Karima installable : OK');
+              }, function(err) {
+                console.log('Erreur PWA : ', err);
+              });
+            });
         }
     </script>
 </body>

@@ -1,0 +1,21 @@
+{
+  "name": "La Casa Karima",
+  "short_name": "Casa Karima",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#d4af37",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "logo casa karima plein.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo casa karima plein.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
