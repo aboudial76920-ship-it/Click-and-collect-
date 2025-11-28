@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <style>
-        /* --- DESIGN --- */
+        /* --- DESIGN GLOBAL --- */
         :root {
             --or: #d4af37;
             --or-brillant: #f9d877;
@@ -28,7 +28,7 @@
             margin: 0;
             padding: 0;
             text-align: center;
-            padding-bottom: 180px;
+            padding-bottom: 300px; /* Augmenté pour laisser place au panier plus grand */
         }
 
         .container {
@@ -64,9 +64,9 @@
             margin-top: 15px; 
         }
 
-        /* --- BOUTON INSTALLATION APP (Style mis à jour) --- */
+        /* --- BOUTON INSTALLATION APP --- */
         #installBtn {
-            display: none; /* Caché par défaut, géré par JS */
+            display: none;
             background: linear-gradient(45deg, var(--or), #b8860b);
             color: #000;
             font-weight: bold;
@@ -88,7 +88,6 @@
             100% { transform: scale(1); }
         }
 
-        /* Bulle d'aide pour iPhone/Manuel */
         #manualInstallMessage {
             display: none;
             background: #222;
@@ -166,22 +165,62 @@
         .btn-plus { background: var(--or); color: #000; font-weight: bold; }
         .prod-qty { margin: 0 15px; font-weight: bold; font-size: 16px; color: #fff; min-width: 20px; text-align: center;}
 
-        /* --- PANIER --- */
+        /* --- PANIER & CHECKOUT (Modifié pour les horaires) --- */
         .bottom-cart {
             position: fixed;
             bottom: 0; left: 0; width: 100%;
             background: rgba(17, 17, 17, 0.98);
             border-top: 2px solid var(--or);
-            padding: 20px 0;
+            padding: 15px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             z-index: 1000;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.8);
         }
 
-        .total-display { font-size: 20px; font-weight: bold; margin-bottom: 15px; color: var(--or-brillant); }
-        .input-field { padding: 12px; border-radius: 5px; border: 1px solid #444; background: #222; color: white; width: 85%; max-width: 350px; margin-bottom: 10px; text-align: center; }
-        .btn-whatsapp { background: #25D366; color: white; border: none; padding: 15px 30px; border-radius: 50px; font-weight: bold; font-size: 16px; width: 90%; max-width: 400px; cursor: pointer; }
+        .total-display { font-size: 20px; font-weight: bold; margin-bottom: 10px; color: var(--or-brillant); }
+        
+        /* Styles des champs de saisie */
+        .input-group {
+            width: 90%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .input-field, .select-field { 
+            padding: 12px; 
+            border-radius: 5px; 
+            border: 1px solid var(--or); 
+            background: #222; 
+            color: white; 
+            width: 100%; 
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .select-field:focus, .input-field:focus {
+            outline: none;
+            border-color: var(--or-brillant);
+            background: #333;
+        }
+
+        .btn-whatsapp { 
+            background: #25D366; 
+            color: white; 
+            border: none; 
+            padding: 15px 30px; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            font-size: 16px; 
+            width: 90%; 
+            max-width: 400px; 
+            cursor: pointer; 
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
 
         .btn-pro { display: inline-block; border: 1px solid #444; color: #aaa; padding: 10px 20px; border-radius: 50px; font-size: 11px; text-decoration: none; margin-top: 10px; }
     </style>
@@ -302,8 +341,8 @@
             <h3 style="color:var(--or);">⏱️ Horaires de Retrait</h3>
             <ul style="color:#ccc; font-size:14px; line-height:1.6; padding-left:20px;">
                 <li>Lundi & Jeudi : 17h-21h</li>
-                <li>Mardi : 18h30-21h | Mercredi : 18h30-20h</li>
-                <li>Vendredi : 13h30-16h & 17h-22h</li>
+                <li>Mardi : 18h30-21h | Mercredi : 18h00-20h</li>
+                <li>Vendredi : 17h-22h</li>
                 <li>Samedi : 15h-20h</li>
             </ul>
             <p style="color:#fff; margin-top:10px;">📍 <strong>19b rue de Franqueville, 76240 Mesnil-Esnard</strong></p>
@@ -316,36 +355,45 @@
 
     <div class="bottom-cart" id="bottomCart" style="display:none;">
         <div class="total-display">Total : <span id="totalPrice">0</span>€</div>
-        <input type="text" id="clientName" class="input-field" placeholder="Votre Nom">
-        <button onclick="processOrder()" class="btn-whatsapp">Commander via WhatsApp 🚀</button>
+        
+        <div class="input-group">
+            <input type="text" id="clientName" class="input-field" placeholder="Votre Nom">
+            
+            <select id="jourRetrait" class="select-field" onchange="updateHoraires()">
+                <option value="">-- Choisir le Jour de Retrait --</option>
+                <option value="Lundi">Lundi</option>
+                <option value="Mardi">Mardi</option>
+                <option value="Mercredi">Mercredi</option>
+                <option value="Jeudi">Jeudi</option>
+                <option value="Vendredi">Vendredi</option>
+                <option value="Samedi">Samedi</option>
+            </select>
+
+            <select id="heureRetrait" class="select-field">
+                <option value="">-- Heure --</option>
+            </select>
+        </div>
+
+        <button onclick="processOrder()" class="btn-whatsapp">Valider & Commander 🚀</button>
     </div>
 
     <script>
-        // --- NOUVELLE LOGIQUE D'INSTALLATION (FORCE LE BOUTON) ---
+        // --- INSTALLATION PWA ---
         let deferredPrompt;
         const installBtn = document.getElementById('installBtn');
         const manualMsg = document.getElementById('manualInstallMessage');
-
-        // Vérification : est-ce que l'app est DÉJÀ installée ?
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 
-        // Si l'app N'EST PAS installée, on AFFICHE LE BOUTON DIRECTEMENT
-        if (!isStandalone) {
-            installBtn.style.display = 'block';
-        }
+        if (!isStandalone) { installBtn.style.display = 'block'; }
 
-        // Écoute de l'événement Android (au cas où il se déclenche)
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            // On s'assure que le bouton est bien visible
             installBtn.style.display = 'block';
         });
 
-        // Fonction déclenchée quand on clique sur le bouton
         function installApp() {
             if (deferredPrompt) {
-                // CAS 1 : Android est prêt, on lance l'install automatique
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
@@ -355,18 +403,46 @@
                     deferredPrompt = null;
                 });
             } else {
-                // CAS 2 : iPhone ou Android pas prêt -> On affiche l'aide manuelle
-                // On cache le bouton et on montre les explications
                 installBtn.style.display = 'none';
                 manualMsg.style.display = 'block';
             }
         }
 
-        // --- LOGIQUE PWA (SERVICE WORKER) ---
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
               navigator.serviceWorker.register('sw.js');
             });
+        }
+
+        // --- GESTION DES HORAIRES (CARNET) ---
+        const horairesDispo = {
+            "Lundi": ["17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00"],
+            "Mardi": ["18:30", "19:00", "19:30", "20:00", "20:30", "21:00"],
+            "Mercredi": ["18:00", "18:30", "19:00", "19:30", "20:00"],
+            "Jeudi": ["17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00"],
+            "Vendredi": ["17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"],
+            "Samedi": ["15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"]
+        };
+
+        function updateHoraires() {
+            const jourSelect = document.getElementById("jourRetrait");
+            const heureSelect = document.getElementById("heureRetrait");
+            const jourChoisi = jourSelect.value;
+
+            heureSelect.innerHTML = ""; // Vider
+
+            if (jourChoisi && horairesDispo[jourChoisi]) {
+                horairesDispo[jourChoisi].forEach(heure => {
+                    let option = document.createElement("option");
+                    option.value = heure;
+                    option.text = heure;
+                    heureSelect.add(option);
+                });
+            } else {
+                let option = document.createElement("option");
+                option.text = "-- Heure --";
+                heureSelect.add(option);
+            }
         }
 
         // --- LOGIQUE PANIER ---
@@ -408,8 +484,14 @@
 
         function processOrder() {
             const name = document.getElementById("clientName").value.trim();
-            if (name === "") { alert("Merci d'indiquer votre nom !"); return; }
+            const jour = document.getElementById("jourRetrait").value;
+            const heure = document.getElementById("heureRetrait").value;
 
+            // VALIDATION
+            if (name === "") { alert("Merci d'indiquer votre nom !"); return; }
+            if (jour === "" || heure === "") { alert("Merci de choisir un jour et une heure de retrait !"); return; }
+
+            // CONSTRUCTION DU MESSAGE WHATSAPP
             let msg = `Bonjour La Casa Karima, c'est ${name}.%0AJe souhaite commander :%0A`;
             let total = 0;
             let hasCoffret = false;
@@ -423,6 +505,8 @@
             }
 
             msg += `%0A*Total : ${total.toFixed(2)}€*`;
+            msg += `%0A%0A📅 *RETRAIT : ${jour} à ${heure}*`;
+            msg += `%0A📍 19b rue de Franqueville`;
             
             if (hasCoffret) {
                 msg += `%0A%0A(Je vous préciserai mes choix de saveurs pour les coffrets dans le message suivant)`;
