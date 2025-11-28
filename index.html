@@ -64,9 +64,9 @@
             margin-top: 15px; 
         }
 
-        /* --- BOUTON INSTALLATION APP --- */
+        /* --- BOUTON INSTALLATION APP (Style mis à jour) --- */
         #installBtn {
-            display: none; /* Caché par défaut */
+            display: none; /* Caché par défaut, géré par JS */
             background: linear-gradient(45deg, var(--or), #b8860b);
             color: #000;
             font-weight: bold;
@@ -88,10 +88,10 @@
             100% { transform: scale(1); }
         }
 
-        /* Bulle d'aide pour iPhone */
-        #iosInstallMessage {
+        /* Bulle d'aide pour iPhone/Manuel */
+        #manualInstallMessage {
             display: none;
-            background: #333;
+            background: #222;
             border: 1px solid var(--or);
             padding: 15px;
             margin: 10px auto;
@@ -99,6 +99,8 @@
             width: 85%;
             font-size: 14px;
             color: #fff;
+            text-align: left;
+            line-height: 1.5;
         }
 
         .category-title {
@@ -197,8 +199,11 @@
             <p style="color:#ccc; font-size:14px;">Charcuterie Fine & Viandes d'Exception<br>100% Halal Premium</p>
             
             <button id="installBtn" onclick="installApp()">📲 Installer l'App Casa Karima</button>
-            <div id="iosInstallMessage">
-                Pour installer : Cliquez sur le bouton de partage <strong><span style="font-size:20px;">⏏️</span></strong> en bas, puis sur <strong>"Sur l'écran d'accueil" ➕</strong>.
+            
+            <div id="manualInstallMessage">
+                <strong>Pour installer l'application :</strong><br><br>
+                1. Cliquez sur le bouton de partage de votre navigateur (<strong><span style="font-size:20px;">⏏️</span></strong> ou <strong>⋮</strong>).<br>
+                2. Cherchez l'option <strong>"Sur l'écran d'accueil" ➕</strong> ou <strong>"Installer l'app"</strong>.
             </div>
 
         </header>
@@ -316,49 +321,48 @@
     </div>
 
     <script>
-        // --- LOGIQUE D'INSTALLATION DE L'APP ---
+        // --- NOUVELLE LOGIQUE D'INSTALLATION (FORCE LE BOUTON) ---
         let deferredPrompt;
         const installBtn = document.getElementById('installBtn');
-        const iosMsg = document.getElementById('iosInstallMessage');
+        const manualMsg = document.getElementById('manualInstallMessage');
 
-        // Détection si c'est un iPhone/iPad
-        const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        // Détection si l'app est DÉJÀ installée
+        // Vérification : est-ce que l'app est DÉJÀ installée ?
         const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 
+        // Si l'app N'EST PAS installée, on AFFICHE LE BOUTON DIRECTEMENT
         if (!isStandalone) {
-            // Si on est sur iPhone et pas encore installé : on affiche le bouton
-            if (isIos) {
-                installBtn.style.display = 'block';
-            }
+            installBtn.style.display = 'block';
         }
 
-        // Pour Android : Chrome prépare l'installation
+        // Écoute de l'événement Android (au cas où il se déclenche)
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            // On affiche le bouton seulement maintenant pour Android
+            // On s'assure que le bouton est bien visible
             installBtn.style.display = 'block';
         });
 
+        // Fonction déclenchée quand on clique sur le bouton
         function installApp() {
-            if (isIos) {
-                // Sur iPhone, on affiche juste l'explication
-                iosMsg.style.display = 'block';
-                installBtn.style.display = 'none'; // On cache le bouton pour laisser place au message
-            } else if (deferredPrompt) {
-                // Sur Android, on lance la vraie installation
+            if (deferredPrompt) {
+                // CAS 1 : Android est prêt, on lance l'install automatique
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
                         installBtn.style.display = 'none';
+                        manualMsg.style.display = 'none';
                     }
                     deferredPrompt = null;
                 });
+            } else {
+                // CAS 2 : iPhone ou Android pas prêt -> On affiche l'aide manuelle
+                // On cache le bouton et on montre les explications
+                installBtn.style.display = 'none';
+                manualMsg.style.display = 'block';
             }
         }
 
-        // --- LOGIQUE PWA ---
+        // --- LOGIQUE PWA (SERVICE WORKER) ---
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
               navigator.serviceWorker.register('sw.js');
