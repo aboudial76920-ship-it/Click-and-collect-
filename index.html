@@ -28,7 +28,7 @@
             margin: 0;
             padding: 0;
             text-align: center;
-            padding-bottom: 300px; /* Augmenté pour laisser place au panier plus grand */
+            padding-bottom: 300px; /* Espace pour le panier */
         }
 
         .container {
@@ -165,7 +165,7 @@
         .btn-plus { background: var(--or); color: #000; font-weight: bold; }
         .prod-qty { margin: 0 15px; font-weight: bold; font-size: 16px; color: #fff; min-width: 20px; text-align: center;}
 
-        /* --- PANIER & CHECKOUT (Modifié pour les horaires) --- */
+        /* --- PANIER & CHECKOUT --- */
         .bottom-cart {
             position: fixed;
             bottom: 0; left: 0; width: 100%;
@@ -181,7 +181,6 @@
 
         .total-display { font-size: 20px; font-weight: bold; margin-bottom: 10px; color: var(--or-brillant); }
         
-        /* Styles des champs de saisie */
         .input-group {
             width: 90%;
             max-width: 400px;
@@ -318,21 +317,30 @@
 
         <div class="product-card" style="border: 1px dashed var(--or);">
             <img src="coffret-bulle.jpg" alt="Coffret Bulle" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header"><span class="prod-title">Coffret "Bulle de Ruche"</span><span class="prod-price">25,00 €</span></div>
-            <div class="prod-desc"><strong>2 Saucissons (200g)</strong> + 1 bouteille Bulle de Ruche (0% alcool).</div>
+            <div class="prod-header">
+                <span class="prod-title">Coffret "Bulle"<br><span style="font-size:14px; color:var(--or-brillant);">(SANS ALCOOL & HALAL)</span></span>
+                <span class="prod-price">25,00 €</span>
+            </div>
+            <div class="prod-desc"><strong>2 Saucissons (200g)</strong> + 1 bouteille Bulle de Ruche.</div>
             <div class="prod-actions"><button class="btn-minus" onclick="updateQty(9, -1)">-</button><span id="qty-9" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(9, 1)">+</button></div>
         </div>
 
         <div class="product-card" style="border: 1px dashed var(--or);">
             <img src="coffret-bloom.jpg" alt="Coffret French Bloom" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header"><span class="prod-title">Coffret "French Bloom"</span><span class="prod-price">30,00 €</span></div>
+            <div class="prod-header">
+                <span class="prod-title">Coffret "French Bloom"<br><span style="font-size:14px; color:var(--or-brillant);">(SANS ALCOOL & HALAL)</span></span>
+                <span class="prod-price">30,00 €</span>
+            </div>
             <div class="prod-desc"><strong>2 Saucissons (200g)</strong> + 1/2 bouteille French Bloom.</div>
             <div class="prod-actions"><button class="btn-minus" onclick="updateQty(10, -1)">-</button><span id="qty-10" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(10, 1)">+</button></div>
         </div>
 
         <div class="product-card" style="border: 1px dashed var(--or);">
             <img src="coffret-prestige.jpg" alt="Coffret Prestige" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header"><span class="prod-title">Coffret "Prestige 350"</span><span class="prod-price">35,00 €</span></div>
+            <div class="prod-header">
+                <span class="prod-title">Coffret "Prestige 350"<br><span style="font-size:14px; color:var(--or-brillant);">(SANS ALCOOL & HALAL)</span></span>
+                <span class="prod-price">35,00 €</span>
+            </div>
             <div class="prod-desc"><strong>1 Saucisson (350g)</strong> + 1/2 bouteille French Bloom.</div>
             <div class="prod-actions"><button class="btn-minus" onclick="updateQty(11, -1)">-</button><span id="qty-11" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(11, 1)">+</button></div>
         </div>
@@ -408,19 +416,14 @@
             }
         }
 
-                // --- AUTO-UPDATE FORCE ---
+        // --- AUTO-UPDATE FORCE ---
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js').then(function(reg) {
-                // On vérifie les mises à jour à chaque ouverture
                 reg.update();
-
-                // Si on détecte une nouvelle installation en cours
                 reg.onupdatefound = function() {
                     const newWorker = reg.installing;
                     newWorker.onstatechange = function() {
-                        // Si la nouvelle version est prête
                         if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                            // On vide le cache dur et on recharge
                             if(confirm("Une mise à jour est disponible pour les réservations. Mettre à jour ?")) {
                                 window.location.reload();
                             }
@@ -428,15 +431,12 @@
                     };
                 };
             });
-
-            // Si le contrôleur change (la mise à jour a réussi), on recharge la page
             navigator.serviceWorker.addEventListener('controllerchange', function() {
                 window.location.reload();
             });
         }
 
-
-        // --- GESTION DES HORAIRES (CARNET) ---
+        // --- GESTION DES HORAIRES ---
         const horairesDispo = {
             "Lundi": ["17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00"],
             "Mardi": ["18:30", "19:00", "19:30", "20:00", "20:30", "21:00"],
@@ -450,9 +450,7 @@
             const jourSelect = document.getElementById("jourRetrait");
             const heureSelect = document.getElementById("heureRetrait");
             const jourChoisi = jourSelect.value;
-
-            heureSelect.innerHTML = ""; // Vider
-
+            heureSelect.innerHTML = "";
             if (jourChoisi && horairesDispo[jourChoisi]) {
                 horairesDispo[jourChoisi].forEach(heure => {
                     let option = document.createElement("option");
@@ -478,9 +476,9 @@
             { name: "Saucisson Fumé (350g)", price: 15.00 },      
             { name: "Saucisson Espagnol (350g)", price: 15.00 },  
             { name: "Soubressade (350g)", price: 18.00 },         
-            { name: "Coffret Bulle de Ruche", price: 25.00 },     
-            { name: "Coffret French Bloom", price: 30.00 },       
-            { name: "Coffret Prestige 350", price: 35.00 }        
+            { name: "Coffret Bulle de Ruche (0% & Halal)", price: 25.00 },     
+            { name: "Coffret French Bloom (0% & Halal)", price: 30.00 },       
+            { name: "Coffret Prestige 350 (0% & Halal)", price: 35.00 }        
         ];
 
         let cart = new Array(products.length).fill(0);
@@ -509,11 +507,9 @@
             const jour = document.getElementById("jourRetrait").value;
             const heure = document.getElementById("heureRetrait").value;
 
-            // VALIDATION
             if (name === "") { alert("Merci d'indiquer votre nom !"); return; }
             if (jour === "" || heure === "") { alert("Merci de choisir un jour et une heure de retrait !"); return; }
 
-            // CONSTRUCTION DU MESSAGE WHATSAPP
             let msg = `Bonjour La Casa Karima, c'est ${name}.%0AJe souhaite commander :%0A`;
             let total = 0;
             let hasCoffret = false;
