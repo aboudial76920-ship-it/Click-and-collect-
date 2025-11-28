@@ -408,11 +408,33 @@
             }
         }
 
+                // --- AUTO-UPDATE FORCE ---
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-              navigator.serviceWorker.register('sw.js');
+            navigator.serviceWorker.register('sw.js').then(function(reg) {
+                // On vérifie les mises à jour à chaque ouverture
+                reg.update();
+
+                // Si on détecte une nouvelle installation en cours
+                reg.onupdatefound = function() {
+                    const newWorker = reg.installing;
+                    newWorker.onstatechange = function() {
+                        // Si la nouvelle version est prête
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            // On vide le cache dur et on recharge
+                            if(confirm("Une mise à jour est disponible pour les réservations. Mettre à jour ?")) {
+                                window.location.reload();
+                            }
+                        }
+                    };
+                };
+            });
+
+            // Si le contrôleur change (la mise à jour a réussi), on recharge la page
+            navigator.serviceWorker.addEventListener('controllerchange', function() {
+                window.location.reload();
             });
         }
+
 
         // --- GESTION DES HORAIRES (CARNET) ---
         const horairesDispo = {
