@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <style>
-        /* --- 1. DESIGN PREMIUM --- */
+        /* --- DESIGN --- */
         :root {
             --or: #d4af37;
             --or-brillant: #f9d877;
@@ -64,6 +64,43 @@
             margin-top: 15px; 
         }
 
+        /* --- BOUTON INSTALLATION APP --- */
+        #installBtn {
+            display: none; /* Caché par défaut */
+            background: linear-gradient(45deg, var(--or), #b8860b);
+            color: #000;
+            font-weight: bold;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            margin: 15px auto;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            width: 80%;
+            font-size: 16px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* Bulle d'aide pour iPhone */
+        #iosInstallMessage {
+            display: none;
+            background: #333;
+            border: 1px solid var(--or);
+            padding: 15px;
+            margin: 10px auto;
+            border-radius: 10px;
+            width: 85%;
+            font-size: 14px;
+            color: #fff;
+        }
+
         .category-title {
             color: var(--or);
             font-size: 22px;
@@ -75,7 +112,7 @@
             text-transform: uppercase;
         }
 
-        /* --- CARTES PRODUITS --- */
+        /* --- PRODUITS --- */
         .product-card {
             background: var(--gris-luxe);
             border: 1px solid #333;
@@ -103,25 +140,9 @@
             padding: 15px 15px 5px 15px;
         }
 
-        .prod-title { 
-            font-weight: bold; 
-            color: #fff; 
-            font-size: 18px; 
-            text-transform: uppercase;
-        }
-
-        .prod-price { 
-            color: var(--or-brillant); 
-            font-weight: bold; 
-            font-size: 18px; 
-        }
-
-        .prod-desc { 
-            padding: 0 15px 15px 15px;
-            font-size: 13px; 
-            color: #aaa; 
-            line-height: 1.4;
-        }
+        .prod-title { font-weight: bold; color: #fff; font-size: 18px; text-transform: uppercase;}
+        .prod-price { color: var(--or-brillant); font-weight: bold; font-size: 18px; }
+        .prod-desc { padding: 0 15px 15px 15px; font-size: 13px; color: #aaa; line-height: 1.4;}
 
         .prod-actions {
             background: #111;
@@ -141,7 +162,6 @@
         }
         .btn-minus { background: #333; color: #fff; }
         .btn-plus { background: var(--or); color: #000; font-weight: bold; }
-        
         .prod-qty { margin: 0 15px; font-weight: bold; font-size: 16px; color: #fff; min-width: 20px; text-align: center;}
 
         /* --- PANIER --- */
@@ -175,192 +195,102 @@
             <img src="logo casa karima plein.png" alt="Logo" class="logo">
             <h1 class="main-title">La Casa Karima</h1>
             <p style="color:#ccc; font-size:14px;">Charcuterie Fine & Viandes d'Exception<br>100% Halal Premium</p>
+            
+            <button id="installBtn" onclick="installApp()">📲 Installer l'App Casa Karima</button>
+            <div id="iosInstallMessage">
+                Pour installer : Cliquez sur le bouton de partage <strong><span style="font-size:20px;">⏏️</span></strong> en bas, puis sur <strong>"Sur l'écran d'accueil" ➕</strong>.
+            </div>
+
         </header>
 
         <h2 class="category-title">🥩 Les Incontournables (200g)</h2>
-
         <div class="product-card">
             <img src="saucisson-nature.jpg" alt="Saucisson Nature" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header">
-                <span class="prod-title">Saucisson Nature</span>
-                <span class="prod-price">6,00 €</span>
-            </div>
-            <div class="prod-desc">Le classique indétrônable. Goût authentique, séchage maîtrisé.</div>
-            <div class="prod-actions">
-                <button class="btn-minus" onclick="updateQty(0, -1)">-</button>
-                <span id="qty-0" class="prod-qty">0</span>
-                <button class="btn-plus" onclick="updateQty(0, 1)">+</button>
-            </div>
+            <div class="prod-header"><span class="prod-title">Saucisson Nature</span><span class="prod-price">6,00 €</span></div>
+            <div class="prod-desc">Le classique indétrônable. Goût authentique.</div>
+            <div class="prod-actions"><button class="btn-minus" onclick="updateQty(0, -1)">-</button><span id="qty-0" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(0, 1)">+</button></div>
         </div>
 
         <div class="product-card">
             <img src="saucisson-poivre.jpg" alt="Saucisson Poivre" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header">
-                <span class="prod-title">Saucisson Poivre</span>
-                <span class="prod-price">6,50 €</span>
-            </div>
-            <div class="prod-desc">Enrobé de poivre concassé pour une note relevée et parfumée.</div>
-            <div class="prod-actions">
-                <button class="btn-minus" onclick="updateQty(1, -1)">-</button>
-                <span id="qty-1" class="prod-qty">0</span>
-                <button class="btn-plus" onclick="updateQty(1, 1)">+</button>
-            </div>
+            <div class="prod-header"><span class="prod-title">Saucisson Poivre</span><span class="prod-price">6,50 €</span></div>
+            <div class="prod-desc">Enrobé de poivre concassé pour une note relevée.</div>
+            <div class="prod-actions"><button class="btn-minus" onclick="updateQty(1, -1)">-</button><span id="qty-1" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(1, 1)">+</button></div>
         </div>
 
         <div class="product-card">
             <img src="saucisson-hdp.jpg" alt="Saucisson Herbes" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header">
-                <span class="prod-title">Saucisson Herbes</span>
-                <span class="prod-price">6,50 €</span>
-            </div>
-            <div class="prod-desc">Aux senteurs du sud (Herbes de Provence). Idéal pour l'apéritif.</div>
-            <div class="prod-actions">
-                <button class="btn-minus" onclick="updateQty(2, -1)">-</button>
-                <span id="qty-2" class="prod-qty">0</span>
-                <button class="btn-plus" onclick="updateQty(2, 1)">+</button>
-            </div>
+            <div class="prod-header"><span class="prod-title">Saucisson Herbes</span><span class="prod-price">6,50 €</span></div>
+            <div class="prod-desc">Aux senteurs du sud (Herbes de Provence).</div>
+            <div class="prod-actions"><button class="btn-minus" onclick="updateQty(2, -1)">-</button><span id="qty-2" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(2, 1)">+</button></div>
         </div>
 
         <div class="product-card">
             <img src="chorizo.jpg" alt="Chorizo" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header">
-                <span class="prod-title">Chorizo (Saucisson)</span>
-                <span class="prod-price">6,50 €</span>
-            </div>
-            <div class="prod-desc">Caractère et épices douces. Une touche de chaleur.</div>
-            <div class="prod-actions">
-                <button class="btn-minus" onclick="updateQty(3, -1)">-</button>
-                <span id="qty-3" class="prod-qty">0</span>
-                <button class="btn-plus" onclick="updateQty(3, 1)">+</button>
-            </div>
+            <div class="prod-header"><span class="prod-title">Chorizo (Saucisson)</span><span class="prod-price">6,50 €</span></div>
+            <div class="prod-desc">Caractère et épices douces.</div>
+            <div class="prod-actions"><button class="btn-minus" onclick="updateQty(3, -1)">-</button><span id="qty-3" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(3, 1)">+</button></div>
         </div>
 
         <div class="product-card">
-            <img src="buchettes.jpg" alt="Buchettes de Saucisson" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header">
-                <span class="prod-title">Buchettes (sachet de 5)</span>
-                <span class="prod-price">5,50 €</span>
-            </div>
-            <div class="prod-desc">Le snack parfait pour l'apéro. Mini-saucissons à croquer.</div>
-            <div class="prod-actions">
-                <button class="btn-minus" onclick="updateQty(4, -1)">-</button>
-                <span id="qty-4" class="prod-qty">0</span>
-                <button class="btn-plus" onclick="updateQty(4, 1)">+</button>
-            </div>
+            <img src="buchettes.jpg" alt="Buchettes" class="product-img" onerror="this.style.display='none'">
+            <div class="prod-header"><span class="prod-title">Buchettes (sachet de 5)</span><span class="prod-price">5,50 €</span></div>
+            <div class="prod-desc">Le snack parfait pour l'apéro.</div>
+            <div class="prod-actions"><button class="btn-minus" onclick="updateQty(4, -1)">-</button><span id="qty-4" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(4, 1)">+</button></div>
         </div>
 
         <h2 class="category-title">🔥 Les Pièces de Maître</h2>
 
         <div class="product-card" style="border: 1px solid var(--or);">
             <img src="gigot.jpg" alt="Gigot Affiné" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header">
-                <span class="prod-title">Gigot Affiné (150g)</span>
-                <span class="prod-price">11,90 €</span>
-            </div>
-            <div class="prod-desc">
-                <strong>8 mois d'affinage.</strong> Charcuterie d'exception, tranchée finement. Goût intense et noisetté.<br>
-                <span style="color:var(--or-brillant); font-size:11px;">⚠️ STOCK TRÈS LIMITÉ</span>
-            </div>
-            <div class="prod-actions">
-                <button class="btn-minus" onclick="updateQty(5, -1)">-</button>
-                <span id="qty-5" class="prod-qty">0</span>
-                <button class="btn-plus" onclick="updateQty(5, 1)">+</button>
-            </div>
+            <div class="prod-header"><span class="prod-title">Gigot Affiné (150g)</span><span class="prod-price">11,90 €</span></div>
+            <div class="prod-desc"><strong>8 mois d'affinage.</strong> Charcuterie d'exception. <span style="color:var(--or-brillant);">⚠️ STOCK TRÈS LIMITÉ</span></div>
+            <div class="prod-actions"><button class="btn-minus" onclick="updateQty(5, -1)">-</button><span id="qty-5" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(5, 1)">+</button></div>
         </div>
 
         <div class="product-card">
             <img src="saucisson-fume.jpg" alt="Saucisson Fumé" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header">
-                <span class="prod-title">Saucisson Fumé (350g)</span>
-                <span class="prod-price">15,00 €</span>
-            </div>
-            <div class="prod-desc">Fumé délicatement au bois de hêtre. Une saveur profonde et boisée.</div>
-            <div class="prod-actions">
-                <button class="btn-minus" onclick="updateQty(6, -1)">-</button>
-                <span id="qty-6" class="prod-qty">0</span>
-                <button class="btn-plus" onclick="updateQty(6, 1)">+</button>
-            </div>
+            <div class="prod-header"><span class="prod-title">Saucisson Fumé (350g)</span><span class="prod-price">15,00 €</span></div>
+            <div class="prod-desc">Fumé délicatement au bois de hêtre.</div>
+            <div class="prod-actions"><button class="btn-minus" onclick="updateQty(6, -1)">-</button><span id="qty-6" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(6, 1)">+</button></div>
         </div>
 
         <div class="product-card">
             <img src="nature-espagnol.jpg" alt="Espagnol" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header">
-                <span class="prod-title">Nature "Espagnol" (350g)</span>
-                <span class="prod-price">15,00 €</span>
-            </div>
-            <div class="prod-desc">Format généreux façon espagnole. Chair tendre et goût subtil.</div>
-            <div class="prod-actions">
-                <button class="btn-minus" onclick="updateQty(7, -1)">-</button>
-                <span id="qty-7" class="prod-qty">0</span>
-                <button class="btn-plus" onclick="updateQty(7, 1)">+</button>
-            </div>
+            <div class="prod-header"><span class="prod-title">Nature "Espagnol" (350g)</span><span class="prod-price">15,00 €</span></div>
+            <div class="prod-desc">Format généreux façon espagnole.</div>
+            <div class="prod-actions"><button class="btn-minus" onclick="updateQty(7, -1)">-</button><span id="qty-7" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(7, 1)">+</button></div>
         </div>
 
         <div class="product-card">
             <img src="soubressade.jpg" alt="Soubressade" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header">
-                <span class="prod-title">Soubressade (350g)</span>
-                <span class="prod-price">18,00 €</span>
-            </div>
-            <div class="prod-desc">Le "Saucisson à tartiner" de caractère. Chair onctueuse et puissante. Une pièce généreuse à déguster sur toast chaud.</div>
-            <div class="prod-actions">
-                <button class="btn-minus" onclick="updateQty(8, -1)">-</button>
-                <span id="qty-8" class="prod-qty">0</span>
-                <button class="btn-plus" onclick="updateQty(8, 1)">+</button>
-            </div>
+            <div class="prod-header"><span class="prod-title">Soubressade (350g)</span><span class="prod-price">18,00 €</span></div>
+            <div class="prod-desc">Le "Saucisson à tartiner". Chair onctueuse.</div>
+            <div class="prod-actions"><button class="btn-minus" onclick="updateQty(8, -1)">-</button><span id="qty-8" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(8, 1)">+</button></div>
         </div>
 
         <h2 class="category-title">🎁 Les Coffrets Cadeaux</h2>
-        <p style="font-size:12px; color:#aaa; margin-bottom:15px; text-align:left;">
-            <em>*Pour les coffrets, vous préciserez vos choix de saucissons (Nature, Poivre...) lors de la validation WhatsApp.</em>
-        </p>
+        <p style="font-size:12px; color:#aaa; margin-bottom:15px; text-align:left;">*Saveurs à préciser lors de la commande.</p>
 
         <div class="product-card" style="border: 1px dashed var(--or);">
             <img src="coffret-bulle.jpg" alt="Coffret Bulle" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header">
-                <span class="prod-title">Coffret "Bulle de Ruche"</span>
-                <span class="prod-price">25,00 €</span>
-            </div>
-            <div class="prod-desc">
-                <strong>2 Saucissons (200g) au choix</strong> + 1 bouteille de Bulle de Ruche (Pétillant de miel 0% alcool).
-            </div>
-            <div class="prod-actions">
-                <button class="btn-minus" onclick="updateQty(9, -1)">-</button>
-                <span id="qty-9" class="prod-qty">0</span>
-                <button class="btn-plus" onclick="updateQty(9, 1)">+</button>
-            </div>
+            <div class="prod-header"><span class="prod-title">Coffret "Bulle de Ruche"</span><span class="prod-price">25,00 €</span></div>
+            <div class="prod-desc"><strong>2 Saucissons (200g)</strong> + 1 bouteille Bulle de Ruche (0% alcool).</div>
+            <div class="prod-actions"><button class="btn-minus" onclick="updateQty(9, -1)">-</button><span id="qty-9" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(9, 1)">+</button></div>
         </div>
 
         <div class="product-card" style="border: 1px dashed var(--or);">
             <img src="coffret-bloom.jpg" alt="Coffret French Bloom" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header">
-                <span class="prod-title">Coffret "French Bloom"</span>
-                <span class="prod-price">30,00 €</span>
-            </div>
-            <div class="prod-desc">
-                <strong>2 Saucissons (200g) au choix</strong> + 1/2 bouteille French Bloom (Le luxe sans alcool).
-            </div>
-            <div class="prod-actions">
-                <button class="btn-minus" onclick="updateQty(10, -1)">-</button>
-                <span id="qty-10" class="prod-qty">0</span>
-                <button class="btn-plus" onclick="updateQty(10, 1)">+</button>
-            </div>
+            <div class="prod-header"><span class="prod-title">Coffret "French Bloom"</span><span class="prod-price">30,00 €</span></div>
+            <div class="prod-desc"><strong>2 Saucissons (200g)</strong> + 1/2 bouteille French Bloom.</div>
+            <div class="prod-actions"><button class="btn-minus" onclick="updateQty(10, -1)">-</button><span id="qty-10" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(10, 1)">+</button></div>
         </div>
 
         <div class="product-card" style="border: 1px dashed var(--or);">
             <img src="coffret-prestige.jpg" alt="Coffret Prestige" class="product-img" onerror="this.style.display='none'">
-            <div class="prod-header">
-                <span class="prod-title">Coffret "Prestige 350"</span>
-                <span class="prod-price">35,00 €</span>
-            </div>
-            <div class="prod-desc">
-                <strong>1 Saucisson (350g) au choix</strong> (Fumé ou Nature) + 1/2 bouteille French Bloom.
-            </div>
-            <div class="prod-actions">
-                <button class="btn-minus" onclick="updateQty(11, -1)">-</button>
-                <span id="qty-11" class="prod-qty">0</span>
-                <button class="btn-plus" onclick="updateQty(11, 1)">+</button>
-            </div>
+            <div class="prod-header"><span class="prod-title">Coffret "Prestige 350"</span><span class="prod-price">35,00 €</span></div>
+            <div class="prod-desc"><strong>1 Saucisson (350g)</strong> + 1/2 bouteille French Bloom.</div>
+            <div class="prod-actions"><button class="btn-minus" onclick="updateQty(11, -1)">-</button><span id="qty-11" class="prod-qty">0</span><button class="btn-plus" onclick="updateQty(11, 1)">+</button></div>
         </div>
 
         <div style="margin-top:40px; text-align:left; border-top:1px solid #333; padding-top:20px;">
@@ -386,19 +316,69 @@
     </div>
 
     <script>
+        // --- LOGIQUE D'INSTALLATION DE L'APP ---
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+        const iosMsg = document.getElementById('iosInstallMessage');
+
+        // Détection si c'est un iPhone/iPad
+        const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        // Détection si l'app est DÉJÀ installée
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+        if (!isStandalone) {
+            // Si on est sur iPhone et pas encore installé : on affiche le bouton
+            if (isIos) {
+                installBtn.style.display = 'block';
+            }
+        }
+
+        // Pour Android : Chrome prépare l'installation
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // On affiche le bouton seulement maintenant pour Android
+            installBtn.style.display = 'block';
+        });
+
+        function installApp() {
+            if (isIos) {
+                // Sur iPhone, on affiche juste l'explication
+                iosMsg.style.display = 'block';
+                installBtn.style.display = 'none'; // On cache le bouton pour laisser place au message
+            } else if (deferredPrompt) {
+                // Sur Android, on lance la vraie installation
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        installBtn.style.display = 'none';
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+
+        // --- LOGIQUE PWA ---
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+              navigator.serviceWorker.register('sw.js');
+            });
+        }
+
+        // --- LOGIQUE PANIER ---
         const products = [
-            { name: "Saucisson Nature (200g)", price: 6.00 },     // 0
-            { name: "Saucisson Poivre (200g)", price: 6.50 },     // 1
-            { name: "Saucisson HDP (200g)", price: 6.50 },        // 2
-            { name: "Saucisson Chorizo (200g)", price: 6.50 },    // 3
-            { name: "Buchettes (x5)", price: 5.50 },              // 4
-            { name: "Gigot Affiné (150g)", price: 11.90 },        // 5 (NEW)
-            { name: "Saucisson Fumé (350g)", price: 15.00 },      // 6
-            { name: "Saucisson Espagnol (350g)", price: 15.00 },  // 7
-            { name: "Soubressade (350g)", price: 18.00 },         // 8
-            { name: "Coffret Bulle de Ruche", price: 25.00 },     // 9
-            { name: "Coffret French Bloom", price: 30.00 },       // 10
-            { name: "Coffret Prestige 350", price: 35.00 }        // 11
+            { name: "Saucisson Nature (200g)", price: 6.00 },     
+            { name: "Saucisson Poivre (200g)", price: 6.50 },     
+            { name: "Saucisson HDP (200g)", price: 6.50 },        
+            { name: "Saucisson Chorizo (200g)", price: 6.50 },    
+            { name: "Buchettes (x5)", price: 5.50 },              
+            { name: "Gigot Affiné (150g)", price: 11.90 },        
+            { name: "Saucisson Fumé (350g)", price: 15.00 },      
+            { name: "Saucisson Espagnol (350g)", price: 15.00 },  
+            { name: "Soubressade (350g)", price: 18.00 },         
+            { name: "Coffret Bulle de Ruche", price: 25.00 },     
+            { name: "Coffret French Bloom", price: 30.00 },       
+            { name: "Coffret Prestige 350", price: 35.00 }        
         ];
 
         let cart = new Array(products.length).fill(0);
@@ -434,7 +414,7 @@
                 if (cart[i] > 0) {
                     msg += `- ${cart[i]}x ${products[i].name}%0A`;
                     total += cart[i] * products[i].price;
-                    if (i >= 9) hasCoffret = true; // Si c'est un coffret (indices 9, 10, 11)
+                    if (i >= 9) hasCoffret = true;
                 }
             }
 
@@ -445,17 +425,6 @@
             }
 
             window.open(`https://api.whatsapp.com/send?phone=33684952088&text=${msg}`, '_blank');
-        }
-
-        // --- SCRIPT D'INSTALLATION PWA ---
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-              navigator.serviceWorker.register('sw.js').then(function(registration) {
-                console.log('Appli Casa Karima installable : OK');
-              }, function(err) {
-                console.log('Erreur PWA : ', err);
-              });
-            });
         }
     </script>
 </body>
