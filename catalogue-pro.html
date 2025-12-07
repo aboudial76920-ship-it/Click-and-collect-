@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Revendeur Officiel - La Casa Karima</title>
+    
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* --- STYLE "DOCUMENT OFFICIEL" (Fond Clair) --- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e0e0e0; /* Gris bureau */
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: none; /* Caché pour sécurité */
+        }
+
+        /* FEUILLE DE PAPIER CENTRALE */
+        .paper-sheet {
+            background-color: white;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 10px solid #800020; /* Bordeaux */
+        }
+
+        /* EN-TÊTE PRO */
+        header {
+            border-bottom: 2px solid #C5A059; /* Or */
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #800020;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .doc-title {
+            text-align: right;
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: #1a1a1a;
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            border-left: 5px solid #C5A059;
+            padding-left: 15px;
+            margin-top: 40px;
+            background: #f9f9f9;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        /* SECTION OFFRE (CARTE GRISE) */
+        .offer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .offer-box {
+            background: #f4f4f4;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .offer-box h3 {
+            margin-top: 0;
+            color: #800020;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .offer-box ul {
+            padding-left: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .highlight-money {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 5px;
+            font-weight: bold;
+            border: 1px solid #ffeeba;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        /* TABLEAU STRICT (Style Excel/Compta) */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        
+        .col-prix { font-weight: bold; color: #111; }
+        .col-marge { color: #27ae60; font-weight: bold; background: #eaffea; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+
+        /* FOOTER TYPE BAS DE PAGE */
+        .footer-legal {
+            margin-top: 50px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+            font-size: 12px;
+            color: #777;
+            text-align: center;
+        }
+
+        .btn-action {
+            display: inline-block;
+            background-color: #800020;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 3px;
+            margin-top: 20px;
+        }
+        
+        .btn-logout {
+            background: #999; color: white; border: none; padding: 5px 10px; font-size: 10px; cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .paper-sheet { padding: 20px; }
+            header { flex-direction: column; text-align: center; }
+            .doc-title { text-align: center; margin-top: 10px; }
+            th, td { padding: 8px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="paper-sheet">
+        <button class="btn-logout" onclick="netlifyIdentity.logout()">Fermer la session</button>
+
+        <header>
+            <h1 class="brand-name">La Casa Karima</h1>
+            <div class="doc-title">
+                DOCUMENT CONFIDENTIEL<br>
+                TARIFS REVENDEURS 2025<br>
+                Réf: B2B-V5
+            </div>
+        </header>
+
+        <p style="font-style: italic; color: #555;">
+            "Le Halal est notre prérequis, l'Excellence est notre signature."<br>
+            Document à usage interne. Ne pas diffuser au public.
+        </p>
+
+        <h2>1. CONDITIONS & PARTENARIAT</h2>
+        
+        <div class="offer-grid">
+            <div class="offer-box">
+                <h3>📌 Étape 1 : Implantation</h3>
+                <ul>
+                    <li><strong>Pack Démarrage :</strong> Inclus.</li>
+                    <li><strong>Marketing :</strong> Kit PLV + Visuel 3D + Conseil Merch.</li>
+                    <li><span class="highlight-money">- 80€ REMISE 1ère Commande</span><br><small>(Participation frais mise en place)</small></li>
+                </ul>
+            </div>
+
+            <div class="offer-box">
+                <h3>🔄 Étape 2 : Rotation</h3>
+                <ul>
+                    <li><strong>Objectif :</strong> Réassort toutes les 6 semaines.</li>
+                    <li><strong>Investissement :</strong> Nouvelle PLV offerte à chaque renouvellement.</li>
+                    <li><strong>Support :</strong> On investit sur VOTRE sortie de caisse.</li>
+                </ul>
+            </div>
+
+            <div class="offer-box">
+                <h3>💻 Étape 3 : Digital</h3>
+                <ul>
+                    <li>Accès logiciel de stock.</li>
+                    <li>Référencement sur notre site.</li>
+                    <li>Accès Click & Collect La Casa Karima.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>2. GRILLE TARIFAIRE (H.T.)</h2>
+        
+        <div style="overflow-x:auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>RÉFÉRENCE</th>
+                        <th>POIDS</th>
+                        <th>PRIX ACHAT (HT)</th>
+                        <th>PV CONSEILLÉ</th>
+                        <th>MARGE VISÉE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Saucisson Nature</td>
+                        <td>200g</td>
+                        <td class="col-prix">4,20 €</td>
+                        <td>6,00 €</td>
+                        <td><span class="col-marge">30%</span></td>
+                    </tr>
+                    <tr>
+                        <td>Saucisson Poivre / HDP</td>
+                        <td>200g</td>
+                        <td class="col-prix">4,55 €</td>
+                        <td>6,50 €</td>
+                        <td><span class="col-marge">30%</span></td>
+                    </tr>
+                    <tr>
+                        <td>Chorizo Doux</td>
+                        <td>200g</td>
+                        <td class="col-prix">4,55 €</td>
+                        <td>6,50 €</td>
+                        <td><span class="col-marge">30%</span></td>
+                    </tr>
+                    <tr>
+                        <td>Nature "Espagnol"</td>
+                        <td>350g</td>
+                        <td class="col-prix">10,50 €</td>
+                        <td>15,00 €</td>
+                        <td><span class="col-marge">30%</span></td>
+                    </tr>
+                    <tr>
+                        <td>Fumé / Pistache / Amande</td>
+                        <td>350g</td>
+                        <td class="col-prix">10,50 €</td>
+                        <td>15,00 €</td>
+                        <td><span class="col-marge">30%</span></td>
+                    </tr>
+                    <tr>
+                        <td>Soubressade</td>
+                        <td>350g</td>
+                        <td class="col-prix">12,60 €</td>
+                        <td>17,00 €</td>
+                        <td><span class="col-marge">30%</span></td>
+                    </tr>
+                    <tr>
+                        <td>Cecina (Bœuf Séché)</td>
+                        <td>Kg</td>
+                        <td class="col-prix">52,00 € /kg</td>
+                        <td>75,00 € /kg</td>
+                        <td><span class="col-marge">Variable</span></td>
+                    </tr>
+                    <tr style="background-color: #fff0f0;">
+                        <td><strong>Gigot Agneau Affiné</strong></td>
+                        <td>Kg</td>
+                        <td class="col-prix">53,00 € /kg</td>
+                        <td>79,90 € /kg</td>
+                        <td><span class="col-marge">PREMIUM</span></td>
+                    </tr>
+                    <tr>
+                        <td>Buchettes (Snacking)</td>
+                        <td>x5</td>
+                        <td class="col-prix">3,91 €</td>
+                        <td>5,50 €</td>
+                        <td><span class="col-marge">25%</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="text-align:center; margin-top:30px;">
+            <a href="mailto:contact@lacasakarima.com" class="btn-action">📩 ENVOYER BON DE COMMANDE</a>
+        </div>
+
+        <div class="footer-legal">
+            <strong>LA CASA KARIMA</strong> - Grossiste Viandes & Charcuteries Halal<br>
+            19b rue de Franqueville, 76240 Le Mesnil-Esnard | Tél: 06 84 95 20 88<br>
+            <br>
+            <em>Préparation : Lundi-Vendredi (10h-16h) | Retrait jusqu'à 21h</em>
+        </div>
+
+    </div>
+
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.location.href = "index.html"; 
+                } else {
+                    document.body.style.display = "block"; 
+                }
+            });
+            window.netlifyIdentity.on("logout", () => {
+                window.location.href = "index.html";
+            });
+        }
+    </script>
+</body>
+</html>
