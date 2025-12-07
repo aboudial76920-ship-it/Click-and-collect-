@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Casa Karima - Click & Collect Premium</title>
     
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#d4af37">
     <link rel="apple-touch-icon" href="logo casa karima plein.png">
@@ -221,7 +223,24 @@
             box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
         }
 
-        .btn-pro { display: inline-block; border: 1px solid #444; color: #aaa; padding: 10px 20px; border-radius: 50px; font-size: 11px; text-decoration: none; margin-top: 10px; }
+        /* MODIFIE : Style du bouton Pro */
+        .btn-pro { 
+            display: inline-block; 
+            background-color: transparent;
+            border: 1px solid #666; 
+            color: #aaa; 
+            padding: 12px 25px; 
+            border-radius: 50px; 
+            font-size: 12px; 
+            text-decoration: none; 
+            margin-top: 10px; 
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-pro:hover {
+            border-color: var(--or);
+            color: var(--or);
+        }
     </style>
 </head>
 <body>
@@ -360,7 +379,7 @@
         </div>
 
         <div style="margin-top: 40px; margin-bottom:20px;">
-            <a href="partenariat-boucherie.html" class="btn-pro">Accès Bouchers / Pro ➡️</a>
+            <button onclick="netlifyIdentity.open()" class="btn-pro">🔒 Espace Bouchers / Pro</button>
         </div>
     </div>
 
@@ -389,6 +408,14 @@
     </div>
 
     <script>
+        // --- REDIRECTION APRES CONNEXION B2B ---
+        // Si le boucher se connecte, on l'envoie vers le catalogue pro que nous avons créé
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("login", () => {
+                document.location.href = "/catalogue-pro.html";
+            });
+        }
+
         // --- INSTALLATION PWA ---
         let deferredPrompt;
         const installBtn = document.getElementById('installBtn');
